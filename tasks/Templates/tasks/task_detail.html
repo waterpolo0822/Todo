@@ -1,0 +1,7 @@
+<h2>New task</h2>
+    <div class="task">
+        <form method="POST" class="TaskEdit">{% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">保存</button>
+        </form>
+    </div>

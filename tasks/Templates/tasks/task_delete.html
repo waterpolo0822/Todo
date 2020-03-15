@@ -1,0 +1,5 @@
+<h2>TaskDelete</h2>
+    <div class="task">
+        <p>{{ task.title }}</p>
+        <a class="btn btn-default" href="{% url 'task_delete' pk=task.pk %}"><span>削除</span></a>
+    </div>

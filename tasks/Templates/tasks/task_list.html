@@ -1,0 +1,42 @@
+{% load static %}
+<html>
+    <head>
+        <title>ToDoList</title>
+        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/task.css' %}">
+        <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    </head>
+    <h1>TEST</h1>
+    <body>
+        <div class="main">
+            <div class="div_table">
+                <Table id="table">
+                    {% for task in tasks %}
+                    <tr id="TaskList">
+                        <td>
+                            <input type="checkbox" name="riyu" value="1" >
+                        </td>
+                        <td id="td_title">
+                            <a class="js-menu__item__link" href="{% url 'task_detail' pk=task.pk %}"><span>{{ task.title }}</span></a>
+                        </td>
+                        <td>
+                            {{ task.due_date }}
+                        </td>
+                        <td>
+                            <form method="POST" id="delete" action="{% url 'task_delete' pk=task.pk %}">{% csrf_token %}
+                                <button type="submit">削除</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </Table>
+                <div id="create">
+                    <form method="POST" class="TaskForm">{% csrf_token %}
+                        {{ form.title }}
+                        <button type="submit" class="btn_sbm">作成</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
